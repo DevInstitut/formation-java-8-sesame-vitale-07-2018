@@ -105,7 +105,7 @@ public class Lambda_04_Test {
         // TODO transformer la liste de personnes en liste de comptes. Un compte a par défaut un solde à 1000.
         // ??? mapToAccount = ???;
 
-        // TODO créer un variable verifyAccount de type GenericMapper
+        // TODO créer un variable verifyAccount de type Processor
         // TODO vérifier que chaque compte a un solde à 1000.
         // TODO vérifier que chaque titulaire de compte a un age > 50
         // ??? verifyAccount = ???;
