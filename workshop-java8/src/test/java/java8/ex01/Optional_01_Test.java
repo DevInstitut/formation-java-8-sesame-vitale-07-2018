@@ -19,7 +19,7 @@ public class Optional_01_Test {
     class NotFountException extends RuntimeException {}
 
 
-    // tag::findMethod[]
+    // Soit une méthode find qui permet de chercher une personne suivant un prédicat.
     <T> T find(List<T> list, Predicate<T> predicate) {
         T result = null;
 
@@ -32,9 +32,17 @@ public class Optional_01_Test {
 
         return result;
     }
-    // end::findMethod[]
 
+    // TODO modifier la méthode find pour qu'elle retourne un type Optional.
+    // La signature sera alors :
+    //          <T> Optional<T> find(List<T> list, Predicate<T> predicate) {
 
+    /**
+     * Validation de la méthode filter.
+     * Cas où la personne recherchée est trouvée.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_optional_found() throws Exception {
 
@@ -51,6 +59,12 @@ public class Optional_01_Test {
         assertThat(result.get(), hasProperty("age", is(10)));
     }
 
+    /**
+     * Validation de la méthode filter.
+     * Cas où la personne recherchée n'est pas trouvée.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_optional_notfound() throws Exception {
 
@@ -64,7 +78,12 @@ public class Optional_01_Test {
         assertThat(result, instanceOf(Optional.class));
         assertThat(result.isPresent(), is(false));
     }
-
+    /**
+     * Validation de l'utilisation de "orElseThrow".
+     * Le résultat attendu ici est le déclenchement d'une exception NotFountException.
+     *
+     * @throws Exception
+     */
     @Test(expected = NotFountException.class)
     public void test_optional_notfound_throw_exception() throws Exception {
 
@@ -76,6 +95,13 @@ public class Optional_01_Test {
         Optional<Person> result = null;
 
         // TODO Utiliser la méthode orElseThrow pour déclencher l'exception NotFountException si non trouvé
+    }
+
+    // TODO Créer une méthode "find" avec la signature suivante
+    <T> T find(List<T> list, Predicate<T> predicate, T defaultValue) {
+        // TODO reutiliser la méthode find précédent écrite
+        // TODO retourner l'object defaultValue si l'optional est vide.
+        return null;
     }
 
     @Test

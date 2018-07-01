@@ -17,14 +17,7 @@ public class Optional_03_Test {
     class GoodException extends RuntimeException {
     }
 
-    // tag::methodes[]
-    private Account getAccountNull() {
-        return null;
-    }
 
-    private Account getAccountWithPersonNull() {
-        return new Account();
-    }
 
     private Account getAccountWithPersonFirstnameNull() {
         Account account = new Account();
@@ -37,41 +30,49 @@ public class Optional_03_Test {
         account.setOwner(new Person("A", "B", 19, "C"));
         return account;
     }
-    // end::methodes[]
 
+
+    // TODO Implémenter la méthode findFirstname pour récupérer le prénom (account -> owner -> firstname)
+    // Quelques indications :
+    // - Utiliser la méthode map pour naviguer
+    // - Utiliser la méthode orElseThrow pour déclencher l'exception GoodException si non trouvé
+    private String findFirstname(Account account) throws GoodException {
+        return null;
+    }
+
+    /**
+     * Validation du cas où Account est null.
+     *
+     * @throws Exception
+     */
     @Test(expected = GoodException.class)
     public void test_getAccountNull() throws Exception {
-        Account account = getAccountNull();
-        Optional<Account> accOpt = Optional.ofNullable(account);
-        // TODO A l'aide de la méthode map récupérer le prénom (account -> person -> firstname)
-        // TODO Utiliser la méthode orElseThrow pour déclencher l'exception GoodException si non trouvé
-        // accOpt.map...
+        Account account = null;
+        String firstname = findFirstname(account); // devrait lancer une GoodException
+        fail();
     }
 
     @Test(expected = GoodException.class)
     public void test_getAccountWithPersonNull() throws Exception {
-        Account account = getAccountWithPersonNull();
-        Optional<Account> accOpt = Optional.ofNullable(account);
-        // TODO A l'aide de la méthode map récupérer le prénom (account -> person -> firstname)
-        // TODO Utiliser la méthode orElseThrow pour déclencher l'exception GoodException si non trouvé
-        // accOpt.map...
+        Account account = new Account(); // getOwner renvoie null
+        String firstname = findFirstname(account); // devrait lancer une GoodException
+        fail();
     }
 
     @Test(expected = GoodException.class)
     public void test_getAccountWithPersonFirstnameNull() throws Exception {
-        Account account = getAccountWithPersonFirstnameNull();
-        Optional<Account> accOpt = Optional.ofNullable(account);
-        // TODO A l'aide de la méthode map récupérer le prénom (account -> person -> firstname)
-        // TODO Utiliser la méthode orElseThrow pour déclencher l'exception GoodException si non trouvé
-        // accOpt.map...
+        Account account = new Account();
+        account.setOwner(new Person()); // getFirstname() renvoie null
+        String firstname = findFirstname(account); // devrait lancer une GoodException
+        fail();
     }
 
     @Test
     public void test_getAccountWithPersonFirstnameNotNull() throws Exception {
-        Account account = getAccountWithPersonFirstnameNotNull();
-        Optional<Account> accOpt = Optional.ofNullable(account);
-        // TODO A l'aide de la méthode map récupérer le prénom (account -> person -> firstname)
-        // TODO Utiliser la méthode ifPresent pour valider que le prénom est "A"
-        // accOpt.map...
+        Account account = new Account();
+        account.setOwner(new Person("A", "B", 19, "C"));
+
+        String firstname = findFirstname(account); // devrait lancer une GoodException
+        assert firstname.equals("A");
     }
 }
