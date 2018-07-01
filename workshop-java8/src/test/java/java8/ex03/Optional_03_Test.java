@@ -14,21 +14,8 @@ import static org.junit.Assert.*;
  */
 public class Optional_03_Test {
 
+    // Soit une exception connue.
     class GoodException extends RuntimeException {
-    }
-
-
-
-    private Account getAccountWithPersonFirstnameNull() {
-        Account account = new Account();
-        account.setOwner(new Person());
-        return account;
-    }
-
-    private Account getAccountWithPersonFirstnameNotNull() {
-        Account account = new Account();
-        account.setOwner(new Person("A", "B", 19, "C"));
-        return account;
     }
 
 
@@ -42,7 +29,7 @@ public class Optional_03_Test {
 
     /**
      * Validation du cas où Account est null.
-     *
+     * Déclenchement de GoodException attendu.
      * @throws Exception
      */
     @Test(expected = GoodException.class)
@@ -52,6 +39,12 @@ public class Optional_03_Test {
         fail();
     }
 
+    /**
+     * Validation du cas où Person est null.
+     * Déclenchement de GoodException attendu.
+     *
+     * @throws Exception
+     */
     @Test(expected = GoodException.class)
     public void test_getAccountWithPersonNull() throws Exception {
         Account account = new Account(); // getOwner renvoie null
@@ -59,6 +52,12 @@ public class Optional_03_Test {
         fail();
     }
 
+    /**
+     * Validation du cas où Firstname est null.
+     * Déclenchement de GoodException attendu.
+     *
+     * @throws Exception
+     */
     @Test(expected = GoodException.class)
     public void test_getAccountWithPersonFirstnameNull() throws Exception {
         Account account = new Account();
@@ -67,6 +66,11 @@ public class Optional_03_Test {
         fail();
     }
 
+    /**
+     * Validation du cas où Firstname est valorisé.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_getAccountWithPersonFirstnameNotNull() throws Exception {
         Account account = new Account();

@@ -69,5 +69,8 @@ public class Optional_02_Test {
         // TODO chaîner avec la méthode "map" pour récupérer l'age
         // TODO utiliser la méthode ifPresent pour vérifier que l'age est bien 30, déclencher l'exception GoodException pour valider que la fonction en paramètre de ifPresent a bien été exécutée.
         // julesOpt.filter...;
+
+        // TODO à supprimer
+        fail();
     }
 }
