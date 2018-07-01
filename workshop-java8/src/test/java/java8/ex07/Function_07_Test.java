@@ -13,11 +13,17 @@ public class Function_07_Test {
     // TODO ex. "(10+11)=21", "(5-2)=3"
     String format(int nb1, int nb2, String symbol, IntBinaryOperator operator) {
         // TODO
-        return null;
+        return new StringBuilder("(")
+                .append(nb1)
+                .append(symbol)
+                .append(nb2)
+                .append(")=")
+                .append(operator.applyAsInt(nb1, nb2))
+                .toString();
     }
 
     // TODO définir sum pour que le test test_format_sum() soit passant
-    IntBinaryOperator sum = null;
+    IntBinaryOperator sum = (n1, n2) -> n1 + n2;
 
     @Test
     public void test_format_sum() throws Exception {
@@ -28,7 +34,7 @@ public class Function_07_Test {
     }
 
     // TODO définir substract afin que le test test_format_subtract() soit passant
-    IntBinaryOperator substract = null;
+    IntBinaryOperator substract = (n1, n2) -> n1 - n2;
 
     @Test
     public void test_format_subtract() throws Exception {
