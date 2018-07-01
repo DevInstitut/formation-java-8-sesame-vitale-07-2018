@@ -9,19 +9,24 @@ import java8.data.Person;
 
 
 /**
- * Exercice 01 - Méthode par défaut
+ * Exercice 01 - Méthode par défaut.
  */
 public class Method_01_Test {
 
-    // tag::IDao[]
+    // Soit une interface d'accès aux données.
     interface IDao {
+
+        // Elle possède une méthode findAll() permettant de récupérer une liste de personnes.
         List<Person> findAll();
 
+        // Nous souhaitons à présent créer une méthode qui calcule la somme des ages des personnes.
+        //
         // TODO créer une méthode int sumAge()
         // TODO Cette méthode retourne le résultat de l'addition des ages des personnes
     }
-    // end::IDao[]
 
+    // DaoA est une implémentation de IDao
+    // Elle est constituée d'un jeu de données de 20 personnes.
     class DaoA implements IDao {
 
         List<Person> people = Data.buildPersonList(20);
@@ -32,6 +37,8 @@ public class Method_01_Test {
         }
     }
 
+    // DaoA est une implémentation de IDao
+    // Elle est constituée d'un jeu de données de 100 personnes.
     class DaoB implements IDao {
 
         List<Person> people = Data.buildPersonList(100);
@@ -42,6 +49,13 @@ public class Method_01_Test {
         }
     }
 
+    // Les 2 implémentations ayant un nombre de personnes différents, les résultats des sommes doivent l'être également.
+
+    /**
+     * Test avec l'implémentation DaoA.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_daoA_sumAge() throws Exception {
 
@@ -53,6 +67,11 @@ public class Method_01_Test {
         assert result == 210;
     }
 
+    /**
+     * Test avec l'implémentation DaoB.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_daoB_sumAge() throws Exception {
 

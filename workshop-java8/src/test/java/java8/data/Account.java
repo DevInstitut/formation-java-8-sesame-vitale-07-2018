@@ -1,5 +1,8 @@
 package java8.data;
 
+/**
+ * Compte bancaire.
+ */
 public class Account {
 
     private Person owner;

@@ -1,5 +1,8 @@
 package java8.data;
 
+/**
+ * Personne.
+ */
 public class Person {
 
     private String firstname;

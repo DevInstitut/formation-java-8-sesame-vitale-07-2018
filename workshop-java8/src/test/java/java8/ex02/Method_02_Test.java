@@ -8,11 +8,10 @@ import java8.data.Data;
 import java8.data.Person;
 
 /**
- * Exercice 02 - Redéfinition
+ * Exercice 02 - Redéfinition de méthodes par défaut.
  */
 public class Method_02_Test {
 
-    // tag::IDao[]
     interface IDao {
         List<Person> findAll();
 
@@ -20,9 +19,7 @@ public class Method_02_Test {
         // TODO la méthode retourne une chaîne de la forme [<nb_personnes> persons]
         // TODO exemple de résultat : "[14 persons]", "[30 persons]"
     }
-    // end::IDao[]
 
-    // tag::DaoA[]
     class DaoA implements IDao {
 
         List<Person> people = Data.buildPersonList(20);
@@ -38,7 +35,6 @@ public class Method_02_Test {
         // TODO l'implémentation réutilise la méthode format() de l'interface
 
     }
-    // end::DaoA[]
 
     @Test
     public void test_daoA_format() throws Exception {

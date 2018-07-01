@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * Générateur de données.
+ */
 public class Data {
 
     public static List<Person> buildPersonList(int nb) {
