@@ -24,7 +24,7 @@ public class Optional_03_Test {
     // - Utiliser la méthode map pour naviguer
     // - Utiliser la méthode orElseThrow pour déclencher l'exception GoodException si non trouvé
     private String findFirstname(Account account) throws GoodException {
-        return null;
+        return  Optional.ofNullable(account).map(Account::getOwner).map(Person::getFirstname).orElseThrow(() -> new GoodException());
     }
 
     /**
