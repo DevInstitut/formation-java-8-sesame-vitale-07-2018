@@ -10,16 +10,17 @@ import java.util.function.BinaryOperator;
  */
 public class Function_03_Test {
 
-    //  tag::makeAChild[]
     // TODO Compléter la fonction makeAChild
     // TODO l'enfant possède le nom du père
     // TODO l'enfant possède le prenom "<PRENOM_PERE> <PRENOM_MERE>"
     // TODO l'age de l'enfant est 0
     // TODO le mot de passe de l'enfant est null
     BinaryOperator<Person> makeAChild = null;
-    //  end::makeAChild[]
 
-
+    /**
+     * Validation de la fonction makeAChild.
+     * @throws Exception
+     */
     @Test
     public void test_makeAChild() throws Exception {
 

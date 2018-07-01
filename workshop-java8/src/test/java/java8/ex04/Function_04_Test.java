@@ -13,7 +13,7 @@ import java.util.function.Predicate;
  */
 public class Function_04_Test {
 
-    // tag::filterMethod[]
+    // Soit une méthode de filtre.
     <T> List<T> filter(List<T> list, Predicate<T> predicate) {
         List<T> result = new ArrayList<>();
         for (T el : list) {
@@ -23,16 +23,18 @@ public class Function_04_Test {
         }
         return result;
     }
-    // end::filterMethod[]
 
     // PART 1 - ADULT
 
-    // tag::adult[]
     // TODO Compléter la fonction
     // TODO AGE >=18
     Predicate<Person> adult = null;
-    // end::adult[]
 
+    /**
+     * Validation de la fonction adult.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_predicate() throws Exception {
 
@@ -47,17 +49,19 @@ public class Function_04_Test {
 
     // PART 2 - ADULT AND LASTNAME=France AND FIRSTNAME=Armor
 
-    // tag::predicateand[]
     // TODO compléter la fonction
     // TODO le prédicat vérifie que le nom est "France"
-    Predicate<Person> lastnameIsFrance = p -> p.getLastname().equals("France");
+    Predicate<Person> lastnameIsFrance = null;
 
 
     // TODO compléter la fonction
     // TODO le prédicat vérifie que le prénom est "Armor"
-    Predicate<Person> firstnameIsArmor = p -> p.getFirstname().equals("Armor");
-    // end::predicateand[]
+    Predicate<Person> firstnameIsArmor = null;
 
+    /**
+     * Validation des fonctions lastnameIsFrance et firstnameIsArmor.
+     * @throws Exception
+     */
     @Test
     public void test_predicate_and() throws Exception {
 

@@ -17,14 +17,12 @@ public class Function_06_Test {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
-    // tag::formatAge[]
     // TODO compléter la méthode
     // TODO la méthode retourne une chaîne de caractères de la forme [age=<AGE>] (exemple : [age=12])
     String formatAge(Supplier<Person> supplier) {
         // TODO
         return null;
     }
-    // end::formatAge[]
 
 
     @Test
@@ -38,6 +36,8 @@ public class Function_06_Test {
     @Test
     public void test_supplier_requireNonNull() throws Exception {
 
+        // configuration du test JUnit pour que le test soit passant uniquement s'il y a un NullPointerException
+        // et que le message est "require non null object"
         expectedException.expect(NullPointerException.class);
         expectedException.expectMessage("require non null object");
 
@@ -45,6 +45,7 @@ public class Function_06_Test {
         Supplier<String> supplier = null;
 
         // Avec un paramètre null, cette méthode déclenche un NullPointerException
+        // Laisser null en entrée.
         Objects.requireNonNull(null, supplier);
 
     }

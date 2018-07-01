@@ -12,9 +12,8 @@ import java.util.function.Function;
  */
 public class Function_01_Test {
 
-    /******** PART 1 - Integer -> Person *******/
+    /******** PARTIE 1 - Integer -> Person *******/
 
-    // tag::intToPerson[]
     // TODO Compléter la définition de cette fonction
     // TODO Cette fonction permet de transformer un entier en objet Person
     // TODO le prenom sera de la forme "first_<ENTIER>"
@@ -22,8 +21,12 @@ public class Function_01_Test {
     // TODO l'age sera de la forme "<ENTIER>"
     // TODO le mot de passe sera de la forme "pass_<ENTIER>"
     private Function<Integer, Person> intToPerson = null;
-    // end::intToPerson[]
 
+    /**
+     * Validation de la fonction intToPerson.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_intToPerson() throws Exception {
 
@@ -36,15 +39,18 @@ public class Function_01_Test {
         assert result.getPassword().equals("pass_10");
     }
 
-    /******** PART 2 - Person -> Account *******/
+    /******** PARTIE 2 - Person -> Account *******/
 
-    // tag::personToAccount[]
     // TODO Compléter la définition de cette fonction
     // TODO la propriété owner est valorisé avec la personne en paramètre
     // TODO la propriété balance est valorisé à 1000
     private Function<Person, Account> personToAccount = null;
-    // end::personToAccount[]
 
+    /**
+     * Validation de la fonction personToAccount.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_personToAccount() throws Exception {
 
@@ -58,15 +64,18 @@ public class Function_01_Test {
     }
 
 
-    /******** PART 3 - Integer -> Account avec compose *******/
+    /******** PARTIE 3 - Integer -> Account avec compose *******/
 
-    // tag::intToAccountWithCompose[]
     // TODO Compléter la définition de cette fonction
     // TODO Utiliser la méthode compose pour réutiliser les fonctions intToPerson et personToAccount
     private Function<Integer, Account> intToAccountWithCompose = null;
-    // end::intToAccountWithCompose[]
 
 
+    /**
+     * Validation de la fonction intToAccountWithCompose.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_intToAccount_with_Compose() throws Exception {
 
@@ -77,14 +86,17 @@ public class Function_01_Test {
         assert result.getBalance().equals(1000);
     }
 
-    /******** PART 4 - Integer -> Account avec andThen *******/
+    /******** PARTIE 4 - Integer -> Account avec andThen *******/
 
-    // tag::intToAccountWithAndThen[]
     // TODO Compléter la définition de cette fonction
     // TODO Utiliser la méthode andThen pour réutiliser les fonctions intToPerson et personToAccount
     private Function<Integer, Account> intToAccountWithAndThen = null;
-    // end::intToAccountWithAndThen[]
 
+    /**
+     * Validation de la fonction intToAccountWithAndThen.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_intToAccount_with_AndThen() throws Exception {
 

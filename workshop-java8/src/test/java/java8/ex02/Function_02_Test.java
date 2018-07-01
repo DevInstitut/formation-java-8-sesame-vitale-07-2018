@@ -11,12 +11,14 @@ import java.util.function.BiFunction;
  */
 public class Function_02_Test {
 
-    //  tag::buildAccount[]
     // TODO Compléter la fonction buildAccount
     // TODO la fonction possède 2 paramètres en entrée : une personne et un solde
     BiFunction<Person, Integer, Account> buildAccount = null;
-    //  end::buildAccount[]
 
+    /**
+     * Validation de la fonction buildAccount.
+     * @throws Exception
+     */
     @Test
     public void test_build_account() throws Exception {
 
