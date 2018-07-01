@@ -15,21 +15,25 @@ import java.util.List;
  */
 public class Lambda_04_Test {
 
-    // tag::interfaces[]
+    // Soit les interfaces génériques que nous avons créées précedemment.
+
     interface GenericPredicate<T> {
-        // TODO
+        boolean test(T p);
     }
 
     interface GenericMapper<T, E> {
-        // TODO
+        E map(T a);
     }
 
     interface Processor<T> {
-        // TODO
+        void process(T p);
     }
-    // end::interfaces[]
 
-    // tag::FuncCollection[]
+    /**
+     * Soit une structure basé sur une collection Java qui permet de bénéficier des méthodes "map", "filter" et "forEach".
+     *
+     * @param <T>
+     */
     class FuncCollection<T> {
 
         private Collection<T> list = new ArrayList<>();
@@ -43,31 +47,41 @@ public class Lambda_04_Test {
                 list.add(el);
             }
         }
-    // end::FuncCollection[]
 
-        // tag::methods[]
         private FuncCollection<T> filter(GenericPredicate<T> predicate) {
             FuncCollection<T> result = new FuncCollection<>();
-            // TODO
+            for (T p : list) {
+                if (predicate.test(p)) {
+                    result.add(p);
+                }
+            }
             return result;
         }
 
         private <E> FuncCollection<E> map(GenericMapper<T, E> mapper) {
             FuncCollection<E> result = new FuncCollection<>();
-            // TODO
+
+            for(T p : list) {
+                result.add(mapper.map(p));
+            }
+
             return result;
         }
 
         private void forEach(Processor<T> processor) {
-           // TODO
+            for(T p : list) {
+                processor.process(p);
+            }
         }
-        // end::methods[]
+
 
     }
 
-
-
-    // tag::test_filter_map_forEach[]
+    /**
+     * Exemple d'utilisation d'une collection avec une approche fonctionnelle.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_filter_map_forEach() throws Exception {
 
@@ -87,9 +101,12 @@ public class Lambda_04_Test {
         // TODO à supprimer
         assert false;
     }
-    // end::test_filter_map_forEach[]
 
-    // tag::test_filter_map_forEach_with_vars[]
+    /**
+     * Exemple de stockage d'une expression lambda dans une variable.
+     *
+     * @throws Exception
+     */
     @Test
     public void test_filter_map_forEach_with_vars() throws Exception {
 
@@ -120,7 +137,7 @@ public class Lambda_04_Test {
         // TODO A supprimer
         assert false;
     }
-    // end::test_filter_map_forEach_with_vars[]
+
 
 
 }

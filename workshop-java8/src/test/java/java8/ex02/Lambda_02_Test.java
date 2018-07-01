@@ -9,25 +9,20 @@ import java.util.List;
 
 
 /**
- * Exercice 02 - Map
+ * Exercice 02 - Fonction de transformation map.
  */
 public class Lambda_02_Test {
 
-    // tag::PersonToAccountMapper[]
     interface PersonToAccountMapper {
         Account map(Person p);
     }
-    // end::PersonToAccountMapper[]
 
-    // tag::map[]
     private List<Account> map(List<Person> personList, PersonToAccountMapper mapper) {
         // TODO implémenter la méthode pour transformer une liste de personnes en liste de comptes
         return null;
     }
-    // end::map[]
 
 
-    // tag::test_map_person_to_account[]
     @Test
     public void test_map_person_to_account() throws Exception {
 
@@ -43,15 +38,18 @@ public class Lambda_02_Test {
             assert account.getOwner() != null;
         }
     }
-    // end::test_map_person_to_account[]
 
-    // tag::test_map_person_to_firstname[]
+
+    // Maintenant que le premier test est passant, vous avez compris la notion de map.
+    // TODO pourriez-vous modifier PersonToAccountMapper (à renommer en GenericMapper) et la méthode map pour que
+    // ces structures puissent s'utiliser avec d'autres classes que Person et Account.
+
     @Test
     public void test_map_person_to_firstname() throws Exception {
 
         List<Person> personList = Data.buildPersonList(100);
 
-        // TODO transformer la liste de personnes en liste de prénoms
+        // TODO transformer la liste de personnes en liste de prénoms grâce aux structures génériques crées précedemment.
         List<String> result = null;
 
         assert result.size() == personList.size();
@@ -59,5 +57,4 @@ public class Lambda_02_Test {
             assert firstname.startsWith("first");
         }
     }
-    // end::test_map_person_to_firstname[]
 }

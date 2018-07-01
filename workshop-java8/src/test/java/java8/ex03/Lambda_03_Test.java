@@ -11,20 +11,15 @@ import java.util.List;
  */
 public class Lambda_03_Test {
 
-    // tag::PersonProcessor[]
-    interface PersonProcessor {
-        void process(Person p);
+    interface Processor<T> {
+        void process(T p);
     }
-    // end::PersonProcessor[]
 
-    // tag::forEach[]
-    private void forEach(List<Person> source, PersonProcessor processor) {
+    private <T> void forEach(List<T> source, Processor<T> processor) {
        // TODO appliquer le traitement défini par le "processor" à chacun des éléments de la source
     }
-    // end::forEach[]
 
 
-    // tag::test_verify_person[]
     @Test
     public void test_verify_person() throws Exception {
 
@@ -34,12 +29,11 @@ public class Lambda_03_Test {
         // TODO vérifier qu'une personne à un nom qui commence par last
         // TODO vérifier qu'une personne à un age > 0
         // TODO la vérification se fait via une assertion (mot clé assert)
-        PersonProcessor verifyPerson = null;
+        Processor<Person> verifyPerson = null;
 
         assert verifyPerson != null;
 
         forEach(personList, verifyPerson);
     }
-    // end::test_verify_person[]
 
 }
