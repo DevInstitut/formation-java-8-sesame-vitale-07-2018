@@ -16,7 +16,9 @@ public class Lambda_03_Test {
     }
 
     private <T> void forEach(List<T> source, Processor<T> processor) {
-       // TODO appliquer le traitement défini par le "processor" à chacun des éléments de la source
+        for(T p : source) {
+            processor.process(p);
+        }
     }
 
 
@@ -29,7 +31,11 @@ public class Lambda_03_Test {
         // TODO vérifier qu'une personne à un nom qui commence par last
         // TODO vérifier qu'une personne à un age > 0
         // TODO la vérification se fait via une assertion (mot clé assert)
-        Processor<Person> verifyPerson = null;
+        Processor<Person> verifyPerson = p -> {
+            assert p.getFirstname().startsWith("first");
+            assert p.getLastname().startsWith("last");
+            assert p.getAge() > 0;
+        };
 
         assert verifyPerson != null;
 
