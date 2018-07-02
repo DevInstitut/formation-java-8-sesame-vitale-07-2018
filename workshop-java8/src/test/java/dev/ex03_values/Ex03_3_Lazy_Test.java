@@ -22,7 +22,7 @@ public class Ex03_3_Lazy_Test {
         assertThat(result.isEvaluated()).isFalse();
 
         // TODO utiliser la méthode get() sur result
-        String value = null;
+        String value = result.get();
 
         // A ce stade l'expression est évaluée.
         assertThat(result.isEvaluated()).isTrue();
@@ -66,13 +66,13 @@ public class Ex03_3_Lazy_Test {
 
         // TODO utiliser la méthode Lazy.val() pour créer une instance de DatabaseService
         // Le résultat est stockée dans une variable de type Service.
-        Service service1 = null;
+        Service service1 =  Lazy.val(() -> new DatabaseService(), Service.class);
 
         // validation qu'à ce stade DatabaseService n'est pas instancié
         assertThat(isDBEvaluated).isFalse();
 
         // TODO invoquer la méthode info du service
-        String value = null;
+        String value =service1.info();
 
         assertThat(value).isEqualTo("database");
 

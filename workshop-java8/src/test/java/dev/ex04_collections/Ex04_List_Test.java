@@ -35,7 +35,12 @@ public class Ex04_List_Test {
 
          */
 
-        return null;
+        return List.of(
+                new Person("Rebel", 17),
+                new Person("Jean", 40),
+                new Person("Hugues", 42),
+                new Person("Lisa", 40)
+        );
 
     }
 
@@ -58,7 +63,7 @@ public class Ex04_List_Test {
         List<Person> people = findPeople();
 
         // TODO filtrer les personnes pour ne garder que les adultes age >= 18
-        List<Person> result = null;
+        List<Person> result = people.filter(p -> p.age >= 18);
 
         assertThat(result).extracting(p -> p.name).doesNotContain("Rebel");
     }
@@ -71,7 +76,7 @@ public class Ex04_List_Test {
         List<Person> people = findPeople();
 
         // TODO grouper les personnes par age
-        Map<Integer, List<Person>> groupByAge = null;
+        Map<Integer, List<Person>> groupByAge = people.groupBy(p -> p.age);
 
         assertThat(groupByAge.get(17).isEmpty()).isFalse();
         assertThat(groupByAge.get(41).isEmpty()).isTrue();

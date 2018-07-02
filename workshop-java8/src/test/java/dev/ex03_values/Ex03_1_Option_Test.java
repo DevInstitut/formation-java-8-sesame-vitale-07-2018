@@ -23,8 +23,11 @@ public class Ex03_1_Option_Test {
     // A partir d'un compte bancaire, elle retourne le prenom du titulaire en majuscules.
     // Si le prenom n'est pas trouvé alors "" est retourné.
     String getUpperCaseFirstnameOfOwner(Account acc) {
-        // TODO
-        return null;
+        return Option.of(acc)
+                .flatMap(a -> Option.of(a.owner))
+                .flatMap(owner -> Option.of(owner.firstname))
+                .map(first -> first.toUpperCase())
+                .getOrElse("");
     }
 
     /**

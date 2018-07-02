@@ -33,14 +33,14 @@ public class Ex03_5_Validation_Test {
             // TODO
             // Si le nom a un nombre de caractères < à NAME_MIN_SIZE, le message d'invalidation est retournée (Validation.invalid("Invalid name size"))
             // Dans le cas où le nom est valide, il est retourné (Validation.valid(name);
-            return null;
+            return (name.length() < NAME_MIN_SIZE) ? Validation.invalid("Invalid name size") : Validation.valid(name);
         }
 
         Validation<String, Integer> validateAge(int age) {
             // TODO
             // Si l'age < à MIN_AGE, le message d'invalidation est retournée (Validation.invalid("Invalid age (18 minimum)"))
             // Dans le cas où l'age est valide, il est retourné (Validation.valid(age);
-            return null;
+            return age < MIN_AGE ? Validation.invalid("Invalid age (18 minimum)") : Validation.valid(age);
 
         }
 

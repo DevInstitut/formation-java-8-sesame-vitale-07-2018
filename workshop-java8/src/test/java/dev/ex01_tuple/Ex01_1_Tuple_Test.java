@@ -1,5 +1,8 @@
 package dev.ex01_tuple;
 
+import io.vavr.Tuple;
+import io.vavr.Tuple2;
+import io.vavr.Tuple3;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 
@@ -18,12 +21,13 @@ public class Ex01_1_Tuple_Test {
         // - la chaine de caractères "Jean"
         // - l'entier 18
         // Tuple2<???> ??? = ???
+        Tuple2<String, Integer> prenomAge = Tuple.of("Jean", 18);
 
         // TODO à partir de l'objet Tuple2, récupérer le nom "Jean"
-        String prenom = null;
+        String prenom = prenomAge._1;
 
         // TODO à partir de l'objet Tuple2, récupérer l'age 18
-        Integer age = null;
+        Integer age = prenomAge._2;
 
 
         assertThat(prenom).isEqualTo("Jean");
@@ -41,16 +45,18 @@ public class Ex01_1_Tuple_Test {
         // - l'entier 20
         // - le boolean true
         // Tuple3<???> ??? = ???
+        Tuple3<String, Integer, Boolean> prenomAgeAdmin = Tuple.of("Jean", 18, true);
+
 
         // TODO à partir de l'objet Tuple3, récupérer le nom "Igor"
-        String prenom = null;
+        String prenom = prenomAgeAdmin._1;
 
         // TODO à partir de l'objet Tuple3, récupérer l'age 20
-        Integer age = null;
+        Integer age = prenomAgeAdmin._2;
 
 
         // TODO à partir de l'objet Tuple3, récupérer le booléen true
-        Boolean isManager = null;
+        Boolean isManager = prenomAgeAdmin._3;
 
         assertThat(prenom).isEqualTo("Jean");
         assertThat(age).isEqualTo(18);

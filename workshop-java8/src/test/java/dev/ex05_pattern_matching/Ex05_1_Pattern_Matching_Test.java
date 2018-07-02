@@ -23,7 +23,14 @@ public class Ex05_1_Pattern_Matching_Test {
     // - Sinon lancement d'une exception throw new IllegalArgumentException("unknown string");
     // Utiliser la structure Try pour éviter la rupture du flux d'exécution.
     Try<Integer> stringToInt(String entry) {
-        return null;
+        return Try.of( () -> Match(entry).of(
+                Case($("un"), 1),
+                Case($("deux"), 2),
+                Case($("trois"), 3),
+                Case($(),() -> {
+                    throw new IllegalArgumentException("unknown string");
+                }))
+        );
     }
 
     /**

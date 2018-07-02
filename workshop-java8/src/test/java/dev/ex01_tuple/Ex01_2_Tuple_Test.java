@@ -28,13 +28,16 @@ public class Ex01_2_Tuple_Test {
         // - l'année de naissance est exprimé sur 2 chiffres : exemple 50 pour 1950, 10 pour 2010
         Tuple3<String, String, Integer> t1 = Tuple.of("igor", "ledev", 50);
 
-
         // Nous souhaitons opérer les transformations suivantes :
         // - le prénom doit avoir sa première lettre en majuscule (utilitaire org.apache.commons.lang3.StringUtils)
         // - le nom doit avoir toutes les lettres en majuscule
         // - l'année doit être exprimé sur 4 chiffres, ajouter 1900.
         // TODO A l'aide de l'opérateur "map" (version 3 paramètres), réaliser la transformation souhaitée.
-        Tuple3<String, String, Integer> result = null;
+        Tuple3<String, String, Integer> result = t1.map(
+                prenom -> StringUtils.capitalize(prenom),
+                String::toUpperCase,
+                age -> age + 1900
+        );
 
         assertThat(result._1).isEqualTo("Igor");
         assertThat(result._2).isEqualTo("LEDEV");
@@ -63,7 +66,7 @@ public class Ex01_2_Tuple_Test {
         Tuple2<String, Integer> prenomAge = Tuple.of("Alex", 30);
 
         // TODO utiliser la méthode apply pour transformer prenomAge en Person
-        Person result = null;
+        Person result = prenomAge.apply((prenom, age) -> new Person(prenom, age));
 
         assertThat(result.firstame).isEqualTo("Alex");
         assertThat(result.age).isEqualTo(30);

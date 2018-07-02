@@ -40,7 +40,13 @@ public class Ex05_2_Pattern_Matching_Test {
     // - Sinon lancement d'une exception throw new IllegalArgumentException("unknown string");
     // Utiliser la structure Try pour éviter la rupture du flux d'exécution.
     Try<String> toUpperCase(Object entry) {
-        return null;
+        return Try.of( () -> Match(entry).of(
+                Case($(instanceOf(String.class)), s -> s.toUpperCase()),
+                Case($(instanceOf(Person.class)), p -> p.name.toUpperCase()),
+                Case($(),() -> {
+                    throw new IllegalArgumentException("unknown string");
+                }))
+        );
     }
 
 

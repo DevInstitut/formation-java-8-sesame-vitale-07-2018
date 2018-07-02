@@ -55,12 +55,13 @@ public class Ex03_2_Try_Test {
 
         // TODO A l'aide de la méthode Try.of, invoquer la méthode concatNameAge avec name et ageMineur
         // ??? result = ???
+        Try<String> result = Try.of(() -> concatNameAge(name, ageMineur));
 
         // TODO invoquer la méthode isFailure sur result
-        Boolean isFailure = null;
+        Boolean isFailure = result.isFailure();
 
         // TODO invoquer la méthode getCause sur result
-        Throwable cause = null;
+        Throwable cause = result.getCause();
 
         assertThat(isFailure).isTrue();
         assertThat(cause).isInstanceOf(AgeException.class);
@@ -78,16 +79,17 @@ public class Ex03_2_Try_Test {
 
         // TODO A l'aide de la méthode Try.of, invoquer la méthode concatNameAge avec name et ageMajeur
         // ??? result = ???
+        Try<String> result = Try.of(() -> concatNameAge(name, ageMajeur));
 
         // TODO invoquer la méthode isFailure sur result
-        Boolean isFailure = null;
+        Boolean isFailure = result.isFailure();
 
 
         // TODO invoquer la méthode isSuccess sur result
-        Boolean isSuccess = null;
+        Boolean isSuccess = result.isSuccess();
 
         // TODO récupérer le résultat à l'aide de la méthode get
-        String value = null;
+        String value = result.get();
 
         assertThat(isFailure).isFalse();
         assertThat(isSuccess).isTrue();

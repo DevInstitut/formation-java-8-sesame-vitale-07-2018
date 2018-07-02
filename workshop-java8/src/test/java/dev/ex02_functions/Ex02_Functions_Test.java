@@ -28,6 +28,8 @@ public class Ex02_Functions_Test {
         // - Type retour = String
         //       * format NOM Prénom (age ans)
         // ??? identite = ???;
+        Function3<String, String, Integer, String> identite = (nom, prenom, age) -> nom.toUpperCase() + " " + prenom + " (" + age + " ans)";
+
 
         // Soit 3 paramètres
         String nom = "Igor";
@@ -35,7 +37,7 @@ public class Ex02_Functions_Test {
         Integer age = 45;
 
         // TODO invoquer la fonction identite
-        String result = null;
+        String result = identite.apply(nom, prenom, age);
 
         assertThat(result).isEqualTo("IGOR Jean (45 ans)");
     }
@@ -54,7 +56,7 @@ public class Ex02_Functions_Test {
 
 
         // TODO Créer une fonction qui enchaîne les transformations toUpperCase et addBracket
-        Function1<String, String> toUpperCaseAndAddBracket = null;
+        Function1<String, String> toUpperCaseAndAddBracket = toUppercase.andThen(addBracket);
 
         String uneStr = "formation java 8";
 
@@ -85,16 +87,17 @@ public class Ex02_Functions_Test {
     public void test_lifting() {
         // TODO Créer une variable qui référence la méthode concatNameAge
         // ??? concatNameAge = ???;
+        Function2<String, Integer, String> concatNameAge = this::concatNameAge;
 
         // TODO Utiliser la fonction statique lift pour créer une version de la fonction concatNameAge robuste aux exceptions
         // ??? concatNameAgeLifted = ???
-
+        Function2<String, Integer, Option<String>> concatNameAgeLifted = Function2.lift(concatNameAge);
         // Soit un nom
         String name = "John";
         Integer age1 = 10;
 
         // TODO Invoquer la fonction concatNameAgeLifted avec name et age1
-        Option<String> result1 = null;
+        Option<String> result1 = concatNameAgeLifted.apply(name, age1);
 
         // Dans ce cas, age < 18, alors l'exception devrait être déclenchée.
         // Ce qui ne sera pas le cas de notre fonction liftée.
@@ -104,7 +107,7 @@ public class Ex02_Functions_Test {
 
 
         // TODO Invoquer la fonction concatNameAgeLifted avec name et age2
-        Option<String> result2 = null;
+        Option<String> result2 = concatNameAgeLifted.apply(name, age2);
 
         // Dans ce cas, age >= 18.
         // Le résultat est défini.
@@ -125,14 +128,16 @@ public class Ex02_Functions_Test {
         // TODO Créer une fonction multiply10AndAdd à partir de la fonction multiplyAndAdd
         // - Utiliser l'exécution partielle ppur valoriser x1 = 10
         // ??? multiply10AndAdd = ???;
+        Function2<Integer, Integer, Integer> multiply10AndAdd = multiplyAndAdd.apply(10);
+
 
         // TODO invoquer la fonction multiply10AndAdd avec x2 = 2 et x3 = 3
-        Integer result1 = null;
+        Integer result1 = multiply10AndAdd.apply(2,3);
 
         assertThat(result1).isEqualTo(23);
 
         // TODO invoquer la fonction multiply10AndAdd avec x2 = 3 et x3 = 2
-        Integer result2 = null;
+        Integer result2 = multiply10AndAdd.apply(3,2);
 
         assertThat(result2).isEqualTo(32);
     }
@@ -149,14 +154,15 @@ public class Ex02_Functions_Test {
         // - Utiliser l'exécution partielle ppur valoriser x1 = 10
         // - Utiliser le Currying en invoquant multiplyAndAdd.curried()
         // ??? multiply10AndAdd = ???;
+        Function1<Integer, Function1<Integer, Integer>> multiply10AndAdd = multiplyAndAdd.curried().apply(10);
 
         // TODO invoquer la fonction multiply10AndAdd avec x2 = 2 et x3 = 3
-        Integer result1 = null;
+        Integer result1 = multiply10AndAdd.apply(2).apply(3);
 
         assertThat(result1).isEqualTo(23);
 
         // TODO invoquer la fonction multiply10AndAdd avec x2 = 3 et x3 = 2
-        Integer result2 = null;
+        Integer result2 = multiply10AndAdd.apply(3).apply(2);
 
         assertThat(result2).isEqualTo(32);
     }
@@ -179,12 +185,13 @@ public class Ex02_Functions_Test {
 
         // TODO Appliquer la méthode memoized à la fonction random
         // ??? randomCached = ???;
+        Function0<Double> randomCached = random.memoized();
 
         // TODO invoquer la méthode randomCached
-        Double r3 = null;
+        Double r3 = randomCached.apply();
 
         // TODO invoquer la méthode randomCached
-        Double r4 = null;
+        Double r4 = randomCached.apply();
 
         // Vérification que les 2 nombres sont les mêmes
         // Le résultat de l'exécution est mise en cache

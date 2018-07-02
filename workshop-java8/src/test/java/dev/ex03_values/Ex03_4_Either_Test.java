@@ -22,8 +22,10 @@ public class Ex03_4_Either_Test {
     // - String représente le message d'erreur "Division par 0 interdite."
     // - Double représente le résultat
     Either<String, Double> diviser(Double x, Double y) {
-        // TODO
-        return null;
+        if(y == 0) {
+            return Either.left("Division par 0 interdite.");
+        }
+        return Either.right(x / y);
     }
 
     /**
