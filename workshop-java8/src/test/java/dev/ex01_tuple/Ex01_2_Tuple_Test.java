@@ -28,6 +28,7 @@ public class Ex01_2_Tuple_Test {
         // - l'année de naissance est exprimé sur 2 chiffres : exemple 50 pour 1950, 10 pour 2010
         Tuple3<String, String, Integer> t1 = Tuple.of("igor", "ledev", 50);
 
+
         // Nous souhaitons opérer les transformations suivantes :
         // - le prénom doit avoir sa première lettre en majuscule (utilitaire org.apache.commons.lang3.StringUtils)
         // - le nom doit avoir toutes les lettres en majuscule
