@@ -27,8 +27,6 @@ public class DateAndTime_07_Test {
 
         LocalDate result = null;
 
-        // TODO valoriser les différentes variables afin de rendre le test passant
-
         assertThat(result.getYear(), is(2017));
         assertThat(result.getMonth(), is(Month.FEBRUARY));
         assertThat(result.getDayOfMonth(), is(12));
