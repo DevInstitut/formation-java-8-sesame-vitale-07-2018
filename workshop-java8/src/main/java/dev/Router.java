@@ -2,6 +2,7 @@ package dev;
 
 import dev.controller.PersonV1Controller;
 import dev.controller.PersonV2Controller;
+import dev.controller.PersonV3Controller;
 import dev.domain.Person;
 import io.vavr.collection.List;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +24,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 public class Router {
 
     @Bean
-    public RouterFunction<ServerResponse> routeApp(PersonV1Controller personV1Controller, PersonV2Controller personV2Controller) {
+    public RouterFunction<ServerResponse> routeApp(PersonV1Controller personV1Controller, PersonV2Controller personV2Controller, PersonV3Controller personV3Controller) {
 
         // la fonction route permet de définir les routes applicatives
         // Chaque route représente le mapping REQUETE <> Réponse
@@ -43,6 +44,9 @@ public class Router {
         )
         .andRoute(
                 GET("/v2/persons/{id}"), personV2Controller::findOnePerson
+        )
+        .andRoute(
+                GET("/v3/persons"), personV3Controller::listAllPersons
         )
         ;
 }
