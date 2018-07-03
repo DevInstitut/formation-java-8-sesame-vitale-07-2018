@@ -21,6 +21,10 @@ public class DemoOptional {
         }
     }
 
+    static Optional<String> chercherPrenom(Client client) {
+        return Optional.ofNullable(client).map(Client::getPrenom);
+    }
+
     static Commande chercherCommande() {
 
         Commande commande = new Commande();
@@ -42,11 +46,17 @@ public class DemoOptional {
 
         Optional<Commande> optCommande = Optional.ofNullable(commande);
 
+        Optional<Optional<String>> prenom = optCommande
+                .map(commande1 -> chercherPrenom(commande1.getClient()));
+
+        Optional<String> prenom2 = optCommande
+                .flatMap(commande1 -> chercherPrenom(commande1.getClient()));
+
         //String prenom = optCommande
         //      .map(c -> c.client)
         //      .map(client -> client.prenom)
         //      .orElseGet(() -> "DEFAULT");
-
+/*
         String prenom = optCommande
                 .map(Commande::getClient)
                 .map(Client::getPrenom)
@@ -55,6 +65,6 @@ public class DemoOptional {
        // String prenom = commande.client.prenom;
 
         System.out.println(prenom);
-
+*/
     }
 }
