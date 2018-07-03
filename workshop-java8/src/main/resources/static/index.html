@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WorkShop Spring WebFLux</title>
+    <!-- Utilisation de la librairie ChartJS : http://www.chartjs.org/docs/latest/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+</head>
+<body>
+
+    <h1>WorkShop Spring WebFLux</h1>
+
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+    <script>
+        var ctx = document.getElementById("myChart");
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels:  [],
+                datasets: [{
+                    label: 'Évolution de la température',
+                    data: [],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+
+
+
+        var source = new EventSource("/temperature");
+        source.onmessage = function(event) {
+            console.log("[DATA]:", event.data);
+            myChart.data.datasets[0].data.push(event.data);
+            myChart.data.labels.push(new Date().toTimeString());
+            myChart.update({
+                easing: 'easeOutBounce'
+            });
+        };
+    </script>
+
+</body>
+</html>

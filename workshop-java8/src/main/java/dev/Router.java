@@ -4,6 +4,7 @@ import dev.controller.PersonV1Controller;
 import dev.controller.PersonV2Controller;
 import dev.controller.PersonV3Controller;
 import dev.domain.Person;
+import dev.service.TemperatureGenService;
 import io.vavr.collection.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,8 +14,10 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import static org.springframework.http.MediaType.TEXT_EVENT_STREAM;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
+import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 /**
  * Routeur applicatif.
@@ -24,7 +27,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 public class Router {
 
     @Bean
-    public RouterFunction<ServerResponse> routeApp(PersonV1Controller personV1Controller, PersonV2Controller personV2Controller, PersonV3Controller personV3Controller) {
+    public RouterFunction<ServerResponse> routeApp(PersonV1Controller personV1Controller, PersonV2Controller personV2Controller, PersonV3Controller personV3Controller, TemperatureGenService temperatureGenService) {
 
         // la fonction route permet de définir les routes applicatives
         // Chaque route représente le mapping REQUETE <> Réponse
@@ -47,6 +50,11 @@ public class Router {
         )
         .andRoute(
                 GET("/v3/persons"), personV3Controller::listAllPersons
+        )
+        .andRoute(
+                GET("/temperature").and(accept(TEXT_EVENT_STREAM)), request -> ok()
+                        .contentType(TEXT_EVENT_STREAM)
+                        .body(temperatureGenService.getTemperatureStream(), Long.class)
         )
         ;
 }
